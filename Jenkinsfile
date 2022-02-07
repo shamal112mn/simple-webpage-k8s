@@ -66,7 +66,7 @@ node {
 
     sshagent(credentials: ['master_jenkins_ssh']){    
       stage('Move  appl'){      
-        sh 'scp mynginx.yaml  vagrant@100.0.0.13:mynginx.yaml'
+        sh 'scp -o StrictHostKeyChecking=no mynginx.yaml  vagrant@100.0.0.13:mynginx.yaml'
       }
               
       stage("${params.action} application"){       
