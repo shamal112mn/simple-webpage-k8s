@@ -19,7 +19,7 @@ int imageTag = Integer.parseInt(params.IMAGE_TAG)
       echo "Movinfg application to remote was skipped"
     }
 
-    stage(" Scaling pods"){ 
+    stage(" Image update"){ 
       sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl set image deployment mynginx nginx=shamal317mn/mynginx:${imageTag}"
     }
   }    
