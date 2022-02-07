@@ -24,7 +24,7 @@ else if ( scaleNum >= 10 ){
       echo "Movinfg application to remote was skipped"
     }
 
-    stage("${params.action} application"){ 
+    stage(" Scaling pods"){ 
       sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl scale deployment mynginx --replicas=${scaleNum}"
     }
   }    
