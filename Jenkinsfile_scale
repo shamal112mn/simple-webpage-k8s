@@ -18,7 +18,7 @@ int scaleNum = Integer.parseInt(params.SCALE)
     }
 
     stage("${params.action} application"){ 
-      sh 'ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl scale deploment mynginx --replicas="${scaleNum}"'
+      sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl scale deploment mynginx --replicas=${scaleNum}"
     }
   }    
 }
