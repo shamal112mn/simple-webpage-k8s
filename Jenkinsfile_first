@@ -2,7 +2,7 @@
 properties([
   parameters ([
     choice(choices: ['Deploy', 'Destroy'], description: 'Select action', name: 'action'),
-    string(defaultValue: '', description: 'Specify TAG#', name: 'TAG', trim: true)
+    string(defaultValue: '10', description: 'Specify TAG#', name: 'TAG', trim: true)
     
   ])
 ])
