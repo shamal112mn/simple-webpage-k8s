@@ -1,0 +1,33 @@
+# Jenkinsfile will scale up and down k8s cluster
+
+
+node {properties([
+  parameters ([    
+    string(defaultValue: '', description: 'Specify Scaling pods#', name: 'SCALE', trim: true)    
+  ])
+])
+
+int scaleNum = Integer.parseInt(params.SCALE)
+
+  sshagent(credentials: ['master_jenkins_ssh']){ 
+    
+    stage(" Git skipped") {
+      echo "Git clone was skipped"
+    }
+
+    stage("Move appl skipped") {
+      echo "Movinfg application to remote was skipped"
+    }
+
+    stage("${params.action} application"){ 
+      sh 'ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl scale deploment mynginx --replicas=${scaleNum}'
+    }
+  }    
+}
+
+   
+
+
+
+
+
