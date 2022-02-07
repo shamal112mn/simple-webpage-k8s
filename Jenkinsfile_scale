@@ -1,5 +1,3 @@
-# Jenkinsfile will scale up and down k8s cluster
-
 
 node {properties([
   parameters ([    
