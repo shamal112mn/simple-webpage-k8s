@@ -7,9 +7,8 @@ properties([
   ])
 ])
 
-if (params.TAG != "" && params.TAG != "Destroy"){
-  int imageTag = Integer.parseInt(params.TAG)  
-}
+ int imageTag = Integer.parseInt(params.TAG)
+
 
 def application = """
 ---
@@ -20,7 +19,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 1 #${scalePods}
+  replicas: 1  
   selector:
     matchLabels:
       app: nginx
