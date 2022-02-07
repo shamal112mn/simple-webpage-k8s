@@ -70,7 +70,7 @@ node {
       }
               
       stage("${params.action} application"){       
-          sh 'ssh  vagrant@100.0.0.13  kubectl apply -f mynginx.yaml'
+          sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl apply -f mynginx.yaml'
       }      
     } 
   } 
@@ -86,7 +86,7 @@ node {
       }
 
       stage("${params.action} application"){ 
-        sh 'ssh  vagrant@100.0.0.13  kubectl delete -f mynginx.yaml'
+        sh 'ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl delete -f mynginx.yaml'
       }
     }
   }  
