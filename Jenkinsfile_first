@@ -16,6 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mynginx
+  namespace: nginx
   labels:
     app: nginx
 spec:
@@ -40,7 +41,7 @@ metadata:
   labels:
     app: nginx
   name: mynginx
-  namespace: default   
+  namespace: nginx   
 spec:  
   ports:
   - nodePort: 30080
