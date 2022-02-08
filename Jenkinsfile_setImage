@@ -1,7 +1,7 @@
 
 node {properties([
   parameters ([    
-    string(defaultValue: '10', description: 'Specify Image Tag #', name: 'IMAGE_TAG', trim: true)    
+    string(defaultValue: '3', description: 'Specify Image Tag #', name: 'IMAGE_TAG', trim: true)    
   ])
 ])
 
@@ -20,7 +20,7 @@ int imageTag = Integer.parseInt(params.IMAGE_TAG)
     }
 
     stage(" Image update"){ 
-      sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl -n nginx set image deployment mynginx nginx=shamal317mn/mynginx:${imageTag}"
+      sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl set image deployment mynginx nginx=shamal317mn/mynginx:${imageTag}"
     }
   }    
 }

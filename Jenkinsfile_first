@@ -2,7 +2,7 @@
 properties([
   parameters ([
     choice(choices: ['Deploy', 'Destroy'], description: 'Select action', name: 'action'),
-    string(defaultValue: '10', description: 'Specify TAG#', name: 'TAG', trim: true)
+    string(defaultValue: '3', description: 'Specify TAG#', name: 'TAG', trim: true)
     
   ])
 ])
@@ -16,7 +16,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mynginx
-  namespace: nginx
   labels:
     app: nginx
 spec:
@@ -41,7 +40,7 @@ metadata:
   labels:
     app: nginx
   name: mynginx
-  namespace: nginx   
+  namespace: default  
 spec:  
   ports:
   - nodePort: 30080
@@ -70,9 +69,8 @@ node {
         sh 'scp -o StrictHostKeyChecking=no mynginx.yaml  vagrant@100.0.0.13:mynginx.yaml'
       }
               
-      stage("${params.action} application"){       
-          sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl create namespace nginx'
-          sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl apply -f mynginx.yaml'
+      stage("${params.action} application"){ 
+        sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl apply -f mynginx.yaml'
       }      
     } 
   } 

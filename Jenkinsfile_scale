@@ -25,7 +25,7 @@ else if ( scaleNum >= 10 ){
     }
 
     stage(" Scaling pods"){ 
-      sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl -n nginx scale deployment mynginx --replicas=${scaleNum}"
+      sh "ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl scale deployment mynginx --replicas=${scaleNum}"
     }
   }    
 }

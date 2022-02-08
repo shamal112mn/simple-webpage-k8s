@@ -1,0 +1,53 @@
+
+properties([
+  parameters ([
+    string(defaultValue: '10', description: 'Specify IMAGE TAG#', name: 'IMAGE_TAG', trim: true)    
+  ])
+])
+
+int imageTag = Integer.parseInt(params.IMAGE_TAG)
+
+
+
+pipeline {
+  environment {
+    registry = "shamal317mn/mynginx"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        // Clean WS before build
+        cleanWs()
+        git 'https://github.com/shamal112mn/simple-webpage.git'
+      }
+    }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$imageTag"
+        }
+      }
+    }
+    stage('Push dockerhub') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$imageTag"
+      }
+    }    
+  }
+}
+
+
+
+
