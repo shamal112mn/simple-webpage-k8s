@@ -71,6 +71,7 @@ node {
       }
               
       stage("${params.action} application"){       
+          sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl create namespace nginx
           sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl apply -f mynginx.yaml'
       }      
     } 
