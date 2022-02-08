@@ -1,7 +1,7 @@
 
 properties([
   parameters ([
-    string(defaultValue: '10', description: 'Specify IMAGE TAG#', name: 'IMAGE_TAG', trim: true)    
+    string(defaultValue: '3', description: 'Specify IMAGE TAG#', name: 'IMAGE_TAG', trim: true)    
   ])
 ])
 
