@@ -87,6 +87,7 @@ node {
 
       stage("${params.action} application"){ 
         sh 'ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl delete -f mynginx.yaml'
+        cleanWs()
       }
     }
   }  
