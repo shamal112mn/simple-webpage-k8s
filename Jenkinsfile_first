@@ -66,11 +66,11 @@ node {
 
     sshagent(credentials: ['master_jenkins_ssh']){    
       stage('Move  appl'){      
-        sh 'scp -o StrictHostKeyChecking=no mynginx.yaml  vagrant@100.0.0.13:mynginx.yaml'
+        sh 'scp -o StrictHostKeyChecking=no mynginx.yaml  vagrant@192.168.56.13:mynginx.yaml'
       }
               
       stage("${params.action} application"){ 
-        sh 'ssh  -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl apply -f mynginx.yaml'
+        sh 'ssh  -o StrictHostKeyChecking=no vagrant@192.168.56.13  kubectl apply -f mynginx.yaml'
       }      
     } 
   } 
@@ -86,7 +86,7 @@ node {
       }
 
       stage("${params.action} application"){ 
-        sh 'ssh   -o StrictHostKeyChecking=no vagrant@100.0.0.13  kubectl delete -f mynginx.yaml'
+        sh 'ssh   -o StrictHostKeyChecking=no vagrant@192.168.56.13  kubectl delete -f mynginx.yaml'
         cleanWs()
       }
     }
